@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<occi:Extension xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:occi="http://schemas.ogf.org/occi/core/ecore" name="cloudwatch" scheme="http://org.occiware/monitoring/cloudwatch#">
+  <import href="http://schemas.ogf.org/occi/core#/"/>
+  <import href="http://schemas.ogf.org/occi/monitoring#/"/>
+  <kinds name="JMX" scheme="http://org.occiware/monitoring/cloudwatch#">
+    <attributes name="NodeUrl" mutable="false" required="true" description="This the JMX RMI URL.">
+      <type xsi:type="occi:StringType" href="http://schemas.ogf.org/occi/core#//@types.0"/>
+    </attributes>
+    <attributes name="credentialsPath" mutable="false" required="true" description="The path to access the user credentials">
+      <type xsi:type="occi:StringType" href="http://schemas.ogf.org/occi/core#//@types.0"/>
+    </attributes>
+    <parent href="http://schemas.ogf.org/occi/monitoring#//@kinds[term='sensor']"/>
+  </kinds>
+  <mixins name="CloudAutomationMetric" scheme="http://org.occiware/monitoring/cloudwatch#">
+    <attributes name="metricName" mutable="true" required="true" description="th metric name, i.e &quot;sigar:Type=FileSystem,Name=/ Free&quot;">
+      <type xsi:type="occi:StringType" href="http://schemas.ogf.org/occi/core#//@types.0"/>
+    </attributes>
+    <attributes name="metric" mutable="true" required="true" description="the metric that will be evaluated, i.e &quot;metric[&quot;sigar:Type=FileSystem,Name=/ Free&quot;]  &lt; 30302000&quot;">
+      <type xsi:type="occi:StringType" href="http://schemas.ogf.org/occi/core#//@types.0"/>
+    </attributes>
+    <applies href="http://schemas.ogf.org/occi/monitoring#//@kinds[term='collector']"/>
+  </mixins>
+  <mixins name="ActionPublisher" scheme="http://org.occiware/monitoring/cloudwatch#" applies="//@kinds[term='jmx']">
+    <attributes name="actionName" mutable="false" required="true" default="print" description="The action that will be executed according to the metrics values">
+      <type xsi:type="occi:StringType" href="http://schemas.ogf.org/occi/core#//@types.0"/>
+    </attributes>
+  </mixins>
+</occi:Extension>

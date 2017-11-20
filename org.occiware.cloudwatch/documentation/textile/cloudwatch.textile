@@ -1,0 +1,64 @@
+h1. OCCI cloudwatch extension
+
+
+
+| *Name* | cloudwatch |
+| *Scheme* | http://org.occiware/monitoring/cloudwatch# |
+
+
+Imported OCCI Extensions:
+
+| *Name* | *Scheme* |
+| <a href="core.textile">core</a> | http://schemas.ogf.org/occi/core# |
+| <a href="monitoring.textile">monitoring</a> | http://schemas.ogf.org/occi/monitoring# |
+
+h1. Kinds
+
+h2. Kind jmx
+
+| *Term* | jmx |
+| *Scheme* | http://org.occiware/monitoring/cloudwatch# |
+| *Title* |  |
+| *Parent* | <a href="monitoring.textile#kind-sensor">http://schemas.ogf.org/occi/monitoring#sensor</a> |
+
+Attributes of jmx are:
+
+| *Attribute* | *Type* | *Required* | *Mutable* | *Default* | *Description* |
+| NodeUrl | <a href="core.textile#-string">String</a> | true | false |  | This the JMX RMI URL. |
+| credentialsPath | <a href="core.textile#-string">String</a> | true | false |  | The path to access the user credentials |
+
+
+
+h1. Mixins
+
+h2. Mixin cloudautomationmetric
+
+| *Term* | cloudautomationmetric |
+| *Scheme* | http://org.occiware/monitoring/cloudwatch# |
+| *Title* |  |
+Applies to:
+* <a href="monitoring.textile#kind-collector">http://schemas.ogf.org/occi/monitoring#collector</a>
+
+Attributes of cloudautomationmetric are:
+
+| *Attribute* | *Type* | *Required* | *Mutable* | *Default* | *Description* |
+| metricName | <a href="core.textile#-string">String</a> | true | true |  | th metric name, i.e "sigar:Type=FileSystem,Name=/ Free" |
+| metric | <a href="core.textile#-string">String</a> | true | true |  | the metric that will be evaluated, i.e "metric["sigar:Type=FileSystem,Name=/ Free"]  < 30302000" |
+
+
+h2. Mixin actionpublisher
+
+| *Term* | actionpublisher |
+| *Scheme* | http://org.occiware/monitoring/cloudwatch# |
+| *Title* |  |
+Applies to:
+* <a href="cloudwatch.textile#kind-jmx">http://org.occiware/monitoring/cloudwatch#jmx</a>
+
+Attributes of actionpublisher are:
+
+| *Attribute* | *Type* | *Required* | *Mutable* | *Default* | *Description* |
+| actionName | <a href="core.textile#-string">String</a> | true | false | print | The action that will be executed according to the metrics values |
+
+
+
+Generated at Mon Nov 20 11:52:24 CET 2017 from platform:/resource/org.occiware.cloudwatch/model/cloudwatch.occie by org.eclipse.cmf.occi.core.gen.textile

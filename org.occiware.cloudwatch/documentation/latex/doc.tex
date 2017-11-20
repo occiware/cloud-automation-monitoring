@@ -1,0 +1,135 @@
+\section{OCCI cloudwatch extension}
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & cloudwatch \\
+  \hline  
+  \textbf{Scheme} & http://org.occiware/monitoring/cloudwatch\# \\
+  \hline
+  \textbf{Specification} &  \\
+  \hline
+\end{tabular}
+\end{center}
+
+\subsection{Imported OCCI extensions}
+
+\begin{center} 
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & core \\
+  \hline  
+  \textbf{Scheme} & http://schemas.ogf.org/occi/core\# \\
+  \hline
+\end{tabular}
+\end{center}
+\begin{center} 
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & monitoring \\
+  \hline  
+  \textbf{Scheme} & http://schemas.ogf.org/occi/monitoring\# \\
+  \hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Kinds}
+\subsubsection{\texttt{JMX} kind}
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & JMX \\
+  \hline  
+  \textbf{Scheme} & http://org.occiware/monitoring/cloudwatch\# \\
+  \hline
+  \textbf{Title} &  \\
+  \hline
+  \textbf{Parent} & Sensor (http://schemas.ogf.org/occi/monitoring\#) \\
+  \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item \textbf{\texttt{JMX} attributes}
+
+\begin{tabularx}{\textwidth}{|l|l|p{1.4cm}|p{1.3cm}|l|X|}
+  \hline
+  \textbf{Attribute} & \textbf{Type} & \textbf{Required} & \textbf{Mutable} & \textbf{Default} & \textbf{Description} \\
+  \hline  
+  NodeUrl & String & true & false &  & This the JMX RMI URL. \\
+  \hline
+  credentialsPath & String & true & false &  & The path to access the user credentials \\
+  \hline
+\end{tabularx}
+\end{itemize}
+
+
+
+\subsection{Mixins}
+\subsubsection{\texttt{CloudAutomationMetric} mixin}
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & CloudAutomationMetric \\
+  \hline  
+  \textbf{Scheme} & http://org.occiware/monitoring/cloudwatch\# \\
+  \hline
+  \textbf{Title} &  \\
+  \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item \textbf{Applies to}:
+\begin{itemize}
+	\item Collector (http://schemas.ogf.org/occi/monitoring\#)
+\end{itemize}
+\end{itemize} 
+
+\begin{itemize}
+\item \textbf{\texttt{CloudAutomationMetric} attributes}
+
+\begin{tabularx}{\textwidth}{|l|l|p{1.4cm}|p{1.3cm}|l|X|}
+  \hline
+  \textbf{Attribute} & \textbf{Type} & \textbf{Required} & \textbf{Mutable} & \textbf{Default} & \textbf{Description} \\
+  \hline  
+  metricName & String & true & true &  & th metric name, i.e "sigar:Type=FileSystem,Name=/ Free" \\
+  \hline
+  metric & String & true & true &  & the metric that will be evaluated, i.e "metric["sigar:Type=FileSystem,Name=/ Free"]  < 30302000" \\
+  \hline
+\end{tabularx}
+\end{itemize}
+
+
+ 
+\subsubsection{\texttt{ActionPublisher} mixin}
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+  \textbf{Name} & ActionPublisher \\
+  \hline  
+  \textbf{Scheme} & http://org.occiware/monitoring/cloudwatch\# \\
+  \hline
+  \textbf{Title} &  \\
+  \hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item \textbf{Applies to}:
+\begin{itemize}
+	\item JMX (http://org.occiware/monitoring/cloudwatch\#)
+\end{itemize}
+\end{itemize} 
+
+\begin{itemize}
+\item \textbf{\texttt{ActionPublisher} attributes}
+
+\begin{tabularx}{\textwidth}{|l|l|p{1.4cm}|p{1.3cm}|l|X|}
+  \hline
+  \textbf{Attribute} & \textbf{Type} & \textbf{Required} & \textbf{Mutable} & \textbf{Default} & \textbf{Description} \\
+  \hline  
+  actionName & String & true & false & print & The action that will be executed according to the metrics values \\
+  \hline
+\end{tabularx}
+\end{itemize}
+
+
+ 
